@@ -4,6 +4,7 @@ const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +15,9 @@ const Login = ({ onLogin }) => {
     }
     // Simulate authentication
     if (username === 'admin' && password === 'password') {
+      if (rememberMe) {
+        localStorage.setItem('rememberedUser', username);
+      }
       onLogin(username);
     } else {
       setError('Invalid username or password');
@@ -38,6 +42,15 @@ const Login = ({ onLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <br />
+        <label>
+          <input
+            type="checkbox"
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+          />
+          Remember me
+        </label>
         <br />
         <button type="submit">Login</button>
       </form>
