@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from './components/Header';
 import Login from './components/Login';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
 
   return (
     <div>
+      <Header />
       {user ? (
         <div>
           <h2>Welcome, {user}!</h2>
